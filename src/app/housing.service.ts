@@ -116,4 +116,8 @@ export class HousingService {
     //Este es un buen ejemplo de que cuando una arrowFunction tiene un solo parametro no lleva parentesis.
     return this.housingLocationList.find(housingLocation => housingLocation.id === id);
   }
+
+  submitApplication(firstName: string, lastName: string, email: string){
+    console.log(firstName, lastName, email);
+  }
 }
