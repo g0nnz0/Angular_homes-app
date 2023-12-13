@@ -5,17 +5,18 @@ import { IHousingLocation } from './ihousing-location';
   providedIn: 'root'
 })
 export class HousingService {
-  protected housingLocationList: IHousingLocation[] = [];
+  url = 'http://localhost:3000/locations';
+
   constructor() { }
 
-  getAllHousingLocations(): IHousingLocation[]{
-    return this.housingLocationList;
+  async getAllHousingLocations(): Promise<IHousingLocation[]>{
+    const data = await fetch(this.url);
+    return await data.json() ?? [];
   }
 
-  getHousingLocationById(id: number): IHousingLocation | undefined{
-    //En esta linea creo que por inferencia TS entiende que el parametro 'housingLocation' en la arrow function es de tipo IHousingLocation porque lo estoy buscando dentro de una lista que es de tipo IHousingLocation
-    //Este es un buen ejemplo de que cuando una arrowFunction tiene un solo parametro no lleva parentesis.
-    return this.housingLocationList.find(housingLocation => housingLocation.id === id);
+  async getHousingLocationById(id: number): Promise<IHousingLocation | undefined>{
+    const data = await fetch(`${this.url}/${id}`);
+    return await data.json() ?? {};
   }
 
   submitApplication(firstName: string, lastName: string, email: string){
