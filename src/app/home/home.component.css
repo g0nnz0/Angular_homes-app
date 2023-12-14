@@ -7,6 +7,10 @@
     margin-top: 50px;
     justify-content: space-around;
   }
+
+  .primary{
+    cursor: pointer;
+  }
   
   input[type="text"] {
     border: solid 1px var(--primary-color);
